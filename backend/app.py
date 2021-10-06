@@ -25,7 +25,8 @@ def submit_data():
         data = {
 
             "company"        : post_data.get('company'),
-            "designation"    : post_data.get('designation')
+            "designation"    : post_data.get('designation'),
+            "review"    : post_data.get('review')
         }
 
         print(data)
@@ -39,8 +40,11 @@ def submit_data():
 @app.route("/view", methods=["POST","GET"])
 def view_data():
 
+
+
     return "Hello"
 
 
 if __name__ == '__main__':
+    
     app.run(debug=True)

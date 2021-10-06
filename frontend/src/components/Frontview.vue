@@ -32,6 +32,15 @@
           
         ></b-form-textarea>
       </b-form-group>
+        <b-form-group id="input-group-2" label="Review" label-for="input-2">
+        <b-form-textarea
+          id="input-2"
+          type="textarea"
+          v-model="dataentry.review"
+          placeholder="Type your review"
+          
+        ></b-form-textarea>
+      </b-form-group>
     <b-button pill v-on:Click="submit" id="button-1" type="submit" variant="dark">Submit</b-button>
      
   </b-form>
@@ -48,6 +57,7 @@ export default{
        dataentry:{
         company:"",
         designation:"",
+        review:"",
       },
     };
   },
@@ -57,6 +67,7 @@ export default{
       axios.post(path, {
         company:this.dataentry.company,
         designation:this.dataentry.designation,
+        review:this.dataentry.review,
         }
       )
       .then(response => {

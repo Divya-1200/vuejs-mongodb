@@ -1,3 +1,4 @@
 flask_cors
 Flask-PyMongo
 python-decouple
+dnspython
