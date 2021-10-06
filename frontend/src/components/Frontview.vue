@@ -3,7 +3,7 @@
 
  <h3>Enter your Data</h3>
     <b-form @submit="submit">
-      <b-form-group id="input-group-1" label="Name" label-for="input-1">
+      <!-- <b-form-group id="input-group-1" label="Name" label-for="input-1">
         <b-form-textarea
           id="input-1"
           type="text"
@@ -12,14 +12,23 @@
           placeholder="Enter the Name"
           
         ></b-form-textarea>
-      </b-form-group>
+      </b-form-group> -->
 
-      <b-form-group id="input-group-2" label="Department" label-for="input-2">
+      <b-form-group id="input-group-2" label="Company" label-for="input-2">
         <b-form-textarea
           id="input-2"
           type="text"
-          v-model="dataentry.department"
-          placeholder="Type your Department here"
+          v-model="dataentry.company"
+          placeholder="Type your company here"
+          
+        ></b-form-textarea>
+      </b-form-group>
+      <b-form-group id="input-group-2" label="Designation" label-for="input-2">
+        <b-form-textarea
+          id="input-2"
+          type="text"
+          v-model="dataentry.designation"
+          placeholder="Type your Designation"
           
         ></b-form-textarea>
       </b-form-group>
@@ -37,8 +46,8 @@ export default{
   data(){
     return {
        dataentry:{
-        name:"",
-        department:"",
+        company:"",
+        designation:"",
       },
     };
   },
@@ -46,8 +55,8 @@ export default{
     submit:function(){
       const path = 'http://127.0.0.1:5000/dataentry'
       axios.post(path, {
-        name:this.dataentry.name,
-        department:this.dataentry.department,
+        company:this.dataentry.company,
+        designation:this.dataentry.designation,
         }
       )
       .then(response => {
