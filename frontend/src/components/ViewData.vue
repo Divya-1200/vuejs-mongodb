@@ -1,7 +1,7 @@
 <template>
 <div >
   <b-navbar toggleable type="dark" variant="dark">
-    <b-navbar-brand class="nav-bar">LinkedIn DataSet</b-navbar-brand>
+    <b-navbar-brand class="nav-bar">Data Collection</b-navbar-brand>
     <b-navbar-nav class=ml-auto>
         <b-nav-item class="link" href="/">Add</b-nav-item>
     </b-navbar-nav>

@@ -27,11 +27,9 @@ def submit_data():
 
             "company"        : post_data.get('company'),
             "designation"    : post_data.get('designation'),
-            "review"    : post_data.get('review')
+            "review"         : post_data.get('review')
         }
 
-        # print(data)
-        
         dbenter.insert_one(data)
         
         response_object['message'] ='Data added!'
@@ -45,24 +43,27 @@ def view_data():
     return data
 
 @app.route("/dataview/<dataid>",methods=["DELETE"]) 
-def DeleteData(dataid):
+def delete_data(dataid):
 
     if request.method =="DELETE":
+
        dbenter.delete_one({"_id":ObjectId(dataid)}) 
+
        response_object = {'status':'success'}
+
        return jsonify(response_object)
 
 @app.route("/dataview/<dataid>",methods=["PUT"])
-def ModifyData(dataid):
+def modify_data(dataid):
 
     if request.method == "PUT":
+
         post_data = request.get_json()
 
-        print(post_data["company"])
-
-
         dbenter.update_one({'_id':ObjectId(dataid)},{'$set':{"designation": post_data.get('designation'), "review":post_data.get('review'), "company":post_data["company"]}})
+        
         response_object = {'status':'success'}
+        
         return jsonify(response_object)
 
 

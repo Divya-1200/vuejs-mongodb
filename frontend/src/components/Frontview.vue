@@ -1,18 +1,14 @@
 <template>
 <div id="app">
+    <b-navbar toggleable type="dark" variant="dark">
+    <b-navbar-brand class="nav-bar">Data Collection</b-navbar-brand>
+    <b-navbar-nav class=ml-auto>
+        <b-nav-item class="link" href="/view">Collections</b-nav-item>
+    </b-navbar-nav>
+  </b-navbar>
 
  <h3>Enter your Data</h3>
     <b-form @submit="submit">
-      <!-- <b-form-group id="input-group-1" label="Name" label-for="input-1">
-        <b-form-textarea
-          id="input-1"
-          type="text"
-          v-model="dataentry.name"
-          
-          placeholder="Enter the Name"
-          
-        ></b-form-textarea>
-      </b-form-group> -->
 
       <b-form-group id="input-group-2" label="Company" label-for="input-2">
         <b-form-textarea
