@@ -109,6 +109,7 @@ export default {
                  console.error(error);
              });
         },
+
         onDeleteData(data){
           
           const finalData = JSON.parse(JSON.stringify(data));
@@ -128,13 +129,15 @@ export default {
            this.getData();
          })
         },
+        
         editData(data){
           this.editentry = data;
         
         },
+
         updatesubmit(){
           const finalData = JSON.parse(JSON.stringify(this.editentry));
-          console.log("Here inside update",this.editentry)
+          
           const id=finalData._id.$oid
          
           const path = 'http://127.0.0.1:5000/dataview/'+id;
@@ -146,7 +149,7 @@ export default {
           })
           .then(()=>{
             this.getData();
-            console.log("Inside update modal", this.editentry.company);
+            
           })
           .catch(error =>{
             console.error(error);

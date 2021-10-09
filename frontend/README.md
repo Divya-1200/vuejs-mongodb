@@ -1,4 +1,4 @@
-# featurepreneur
+# MongoDB and Vue.js
 
 ## Project setup
 ```

@@ -61,9 +61,9 @@ export default{
     submit:function(){
       const path = 'http://127.0.0.1:5000/dataentry'
       axios.post(path, {
-        company:this.dataentry.company,
-        designation:this.dataentry.designation,
-        review:this.dataentry.review,
+        company       : this.dataentry.company,
+        designation   : this.dataentry.designation,
+        review        : this.dataentry.review,
         }
       )
       .then(response => {
