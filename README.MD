@@ -32,6 +32,8 @@ cd backend
 
 conda activate <py38>
 
+Insert your Mongo URI in .env file
+
 python app.py
 ```
 
