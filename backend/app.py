@@ -5,6 +5,7 @@ from bson.json_util import dumps
 from flask_pymongo import PyMongo
 import os
 from decouple import config
+from bson import ObjectId
 
 app = Flask(__name__)
 Cors = CORS(app)
@@ -29,7 +30,7 @@ def submit_data():
             "review"    : post_data.get('review')
         }
 
-        print(data)
+        # print(data)
         
         dbenter.insert_one(data)
         
@@ -40,9 +41,29 @@ def submit_data():
 @app.route("/view", methods=["POST","GET"])
 def view_data():
 
+    data=dumps(dbenter.find())
+    return data
+
+@app.route("/dataview/<dataid>",methods=["DELETE"]) 
+def DeleteData(dataid):
+
+    if request.method =="DELETE":
+       dbenter.delete_one({"_id":ObjectId(dataid)}) 
+       response_object = {'status':'success'}
+       return jsonify(response_object)
+
+@app.route("/dataview/<dataid>",methods=["PUT"])
+def ModifyData(dataid):
+
+    if request.method == "PUT":
+        post_data = request.get_json()
+
+        print(post_data["company"])
 
 
-    return "Hello"
+        dbenter.update_one({'_id':ObjectId(dataid)},{'$set':{"designation": post_data.get('designation'), "review":post_data.get('review'), "company":post_data["company"]}})
+        response_object = {'status':'success'}
+        return jsonify(response_object)
 
 
 if __name__ == '__main__':

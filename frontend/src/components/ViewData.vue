@@ -33,30 +33,35 @@
     <b-modal ref="editDataModal" id="edit-update-modal" title="Update" hide-footer>
       <div class="updateContainer">
        <b-form @submit.prevent="updatesubmit">
-        <b-form-group 
-        id="input-12"
-        label="Enter the Name"
-        label-for="input-1"
-        
-       >
+       
+       <b-form-group id="input-12" label="Company Name" label-for="input-2">
       <b-form-input
-          id="input-1"
+          id="input-2"
           type="String"
-          v-model="editentry.name[0]"
-          placeholder="Name"
+          v-model="editentry.company"
+          placeholder="Company Name"
+        ></b-form-input>
+        </b-form-group>
+
+        <b-form-group id="input-12" label="Designation" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          type="String"
+          v-model="editentry.designation"
+          placeholder="Designation"
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-12" label="About" label-for="input-2">
+      <b-form-group id="input-12" label="Review" label-for="input-2">
         <b-form-textarea
           id="input-2"
           type="text"
-          v-model="editentry.about"
-          placeholder="Type About"
+          v-model="editentry.review"
+          placeholder="Type Review"
           rows=8
         ></b-form-textarea>
       </b-form-group>
-    <b-button pill v-on:Click.stop="updatesubmit" id="button-2" type="submit" variant="dark">Update</b-button>
+    <b-button pill v-on:Click.stop="updatesubmit" @click="$bvModal.hide('edit-update-modal')" id="button-2" type="submit" variant="dark">Update</b-button>
      
   </b-form>
   </div>
@@ -79,8 +84,9 @@ export default {
             data: [],
             editentry:{
               _id:"",
-              name:"",
-              about:"",
+              company:"",
+              designation:"",
+              review:"",
 
             },
         };
@@ -96,6 +102,7 @@ export default {
             axios.get(path)
              .then((res) => {
                  this.data = res.data;
+                 console.log(this.data);
                  
              })
              .catch((error) => {
@@ -107,9 +114,10 @@ export default {
           const finalData = JSON.parse(JSON.stringify(data));
           this.removeData(finalData._id)
         },
+
         removeData(dataid){
          
-         const path = 'http://127.0.0.1:5000/view/'+dataid.$oid;
+         const path = 'http://127.0.0.1:5000/dataview/'+dataid.$oid;
          console.log(path)
          axios.delete(path).then(()=>{
            console.log("deleted")
@@ -126,16 +134,19 @@ export default {
         },
         updatesubmit(){
           const finalData = JSON.parse(JSON.stringify(this.editentry));
-          console.log(this.editentry)
+          console.log("Here inside update",this.editentry)
           const id=finalData._id.$oid
          
           const path = 'http://127.0.0.1:5000/dataview/'+id;
+
           axios.put(path,{
-            name:this.editentry.name[0],
-            about:this.editentry.about,
+            company       : this.editentry.company,
+            designation   : this.editentry.designation,
+            review        : this.editentry.review,
           })
           .then(()=>{
             this.getData();
+            console.log("Inside update modal", this.editentry.company);
           })
           .catch(error =>{
             console.error(error);
